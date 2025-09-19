@@ -3,7 +3,7 @@
   [ngClass]="{ 'navbar-light bg-light': !theme.isDark(), 'navbar-dark bg-dark': theme.isDark() }"
 >
   <div class="container">
-    <a class="navbar-brand" routerLink="/catalog">Product Catalog</a>
+    <a class="navbar-brand" routerLink="/catalog">Tienda Virtual</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -15,10 +15,12 @@
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/catalog" routerLinkActive="active">Catalog</a>
+          <a class="nav-link" routerLink="/catalog" routerLinkActive="active">Catálogo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active"
+            >Administrar Productos</a
+          >
         </li>
       </ul>
       <div class="d-flex align-items-center gap-3">
@@ -34,7 +36,8 @@
         </div>
         <div>
           <a class="btn btn-primary btn-sm" routerLink="/catalog">
-            Cart <span class="badge bg-light text-dark">{{ (cart.count$ | async) || 0 }}</span>
+            Carrito de Compras
+            <span class="badge bg-light text-dark">{{ (cart.count$ | async) || 0 }}</span>
           </a>
         </div>
       </div>
