@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from '../models/product.model';
 
-export interface CartItem {
+/*export interface CartItem {
   product: Product;
   quantity: number;
 }
@@ -48,4 +48,4 @@ export class CartService {
   getCount(): number {
     return this._items$.value.reduce((s, i) => s + i.quantity, 0);
   }
-}
+}*/
