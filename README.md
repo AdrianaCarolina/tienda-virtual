@@ -1,59 +1,43 @@
 # TiendaVirtual
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.6.
+Aplicación de tienda en línea desarrollada con Angular que permite la gestión de productos, categorías, usuarios y pedidos.
 
-## Development server
+## Integrantes del Proyecto
+- Adriana Carolina Luque López - luque.lopez.adriana@gmail.com
+- Sergio Elias Ortiz Rubin de Celis - MatteBlack42
+- Katherine Yisenia Sandoval Anchayhua - yiseniasandoval@gmail.com
+- Gallen Psykhe Puerta Ramirez - gallenpuerta@gmail.com
 
-To start a local development server, run:
+## Caracteristicas
+- Autenticación de usuarios (clientes y administradores)
+- Catálogo de productos con categorías
+- Carrito de compras
+- Proceso de checkout
+- Gestión de pedidos
+- Panel de administración
 
+## Tecnologias Utilizadas
+- Frontend: Angular 20.x
+- Backend: JSON Server (simulación de API REST)
+- Estilos: Bootstrap 5.3.7
+
+## Prerequisitos
+Antes de ejecutar el proyecto, asegúrate de tener instalado:
+- Node.js
+- Angular 20.x
+
+## Instalacion y Configuracion
+
+1. Clonar el repositorio
 ```bash
-ng serve
+git clone https://github.com/AdrianaCarolina/tienda-virtual
+cd tienda-virtual
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+2. Instalar dependencias
 ```bash
-ng generate component component-name
+npm install
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+3. Ejecutar el proyecto
 ```bash
-ng generate --help
+npm start
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
