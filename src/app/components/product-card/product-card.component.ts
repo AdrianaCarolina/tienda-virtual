@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product.model';
 import { AsyncPipe } from '@angular/common';
+import { CartService } from '../../pages/cart/services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -15,7 +16,9 @@ export class ProductCardComponent {
   @Input() categoryName?: string;
   @Output() add = new EventEmitter<Product>();
 
+  private cartService = inject(CartService);
+
   onAdd() {
-    this.add.emit(this.product);
+    this.cartService.addToCart(this.product);
   }
 }
