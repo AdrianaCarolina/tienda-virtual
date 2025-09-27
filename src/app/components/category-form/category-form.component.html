@@ -1,0 +1,16 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="mb-2">
+    <label class="form-label">Category Name</label>
+    <input class="form-control" formControlName="name" />
+  </div>
+
+  <div class="mb-2">
+    <label class="form-label">Description</label>
+    <input class="form-control" formControlName="description" />
+  </div>
+
+  <div class="d-flex justify-content-end gap-2">
+    <button type="button" class="btn btn-outline-secondary" (click)="cancel.emit()">Cancel</button>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Create Category</button>
+  </div>
+</form>

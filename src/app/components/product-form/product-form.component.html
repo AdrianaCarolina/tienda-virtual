@@ -23,7 +23,7 @@
       <label class="form-label">Category</label>
       <select class="form-select" formControlName="categoryId">
         <option [ngValue]="null">Select</option>
-        <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
+        <option *ngFor="let c of categories" [ngValue]="c.id">{{ c.name }}</option>
       </select>
     </div>
   </div>
