@@ -30,7 +30,6 @@ export class ModalService {
   }
 
   showProductAdded(productName: string, data?: any): void {
-    debugger;
     this.show({
       type: 'success',
       title: '¡Producto Agregado!',

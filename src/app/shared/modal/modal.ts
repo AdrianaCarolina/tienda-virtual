@@ -19,13 +19,6 @@ export class Modal {
   readonly config = this.modalService.config;
   readonly cartItemCount = this.cartService.itemCount;
 
-  ngOnInit() {
-    debugger;
-    console.log('🎬 ReusableModal ngOnInit ejecutado'); // ← DEBUG
-    console.log('🔍 Initial isVisible:', this.isVisible()); // ← DEBUG
-    console.log('🔍 Initial config:', this.config()); // ← DEBUG
-  }
-
   closeModal(): void {
     this.modalService.hide();
   }
