@@ -1,0 +1,186 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-backdrop.show {
+  opacity: 1;
+  transition: opacity 0.15s linear;
+}
+
+/* Modal Container */
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 1.75rem;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 3.5rem);
+}
+
+.modal-dialog-centered {
+  justify-content: center;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+  pointer-events: auto;
+  background-color: #fff;
+  border-radius: 12px;
+  border: none;
+}
+
+/* Header */
+.modal-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 50px;
+  border-bottom: 1px solid #dee2e6;
+  position: relative;
+}
+
+.modal-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+
+.modal-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.btn-close {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #6c757d;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 16px 24px;
+}
+
+.modal-message {
+  margin: 0;
+  color: #495057;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.cart-info {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  color: #495057;
+  font-weight: 500;
+  border-left: 4px solid #007bff;
+}
+
+/* Footer */
+.modal-footer {
+  padding: 15px 24px;
+  border-top: 1px solid #dee2e6;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.modal-footer .btn {
+  padding: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+/* Variantes por tipo de modal */
+
+/* Success Modal */
+.modal-success .modal-icon {
+  background: #d4edda;
+  color: #28a745;
+}
+
+.modal-success .modal-title {
+  color: #28a745;
+}
+
+/* Error Modal */
+.modal-error .modal-icon {
+  background: #f8d7da;
+  color: #dc3545;
+}
+
+.modal-error .modal-title {
+  color: #dc3545;
+}
+
+/* Info Modal */
+.modal-info .modal-icon {
+  background: #cce7ff;
+  color: #007bff;
+}
+
+.modal-info .modal-title {
+  color: #007bff;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .modal-dialog {
+    margin: 10px;
+  }
+
+  .modal-content {
+    max-width: none;
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .modal-footer .btn:last-child {
+    margin-bottom: 0;
+  }
+}

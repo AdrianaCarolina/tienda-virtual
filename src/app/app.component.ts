@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ThemeService } from './services/theme.service';
 import { CartService } from './services/cart.service';
 import { AsyncPipe } from '@angular/common';
+import { Modal } from './shared/modal/modal';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { AsyncPipe } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     AsyncPipe,
+    Modal,
   ],
   providers: [ThemeService, CartService],
   templateUrl: './app.component.html',
