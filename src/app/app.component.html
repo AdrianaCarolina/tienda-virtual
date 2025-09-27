@@ -1,51 +1,5 @@
-<nav
-  class="navbar navbar-expand-lg"
-  [ngClass]="{ 'navbar-light bg-light': !theme.isDark(), 'navbar-dark bg-dark': theme.isDark() }"
->
-  <div class="container">
-    <a class="navbar-brand" routerLink="/catalog">Tienda Virtual</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navMenu"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/catalog" routerLinkActive="active">Catálogo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin" routerLinkActive="active"
-            >Administrar Productos</a
-          >
-        </li>
-      </ul>
-      <div class="d-flex align-items-center gap-3">
-        <div class="me-2">
-          <button class="btn btn-outline-secondary btn-sm" (click)="theme.toggle()">
-            <i
-              class="bi"
-              [class.bi-moon-fill]="!theme.isDark()"
-              [class.bi-sun-fill]="theme.isDark()"
-            ></i>
-            {{ theme.isDark() ? 'Light' : 'Dark' }}
-          </button>
-        </div>
-        <div>
-          <a class="btn btn-primary btn-sm" routerLink="/catalog">
-            Carrito de Compras
-            <span class="badge bg-light text-dark">{{ (cart.count$ | async) || 0 }}</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-
+<app-header></app-header>
 <main class="container my-4">
   <router-outlet></router-outlet>
-  <app-modal></app-modal>
 </main>
+<app-modal></app-modal>
