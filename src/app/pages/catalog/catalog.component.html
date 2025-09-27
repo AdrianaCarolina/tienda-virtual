@@ -1,16 +1,13 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h4>Catálogo</h4>
-</div>
 <div
   class="mb-3 d-flex flex-column gap-2 gap-md-0 flex-md-row justify-content-between align-items-center"
 >
   <div class="w-100 me-md-2">
-    <input class="form-control" placeholder="Buscar un producto" [formControl]="search" />
+    <input class="form-control" placeholder="Search products by name..." [formControl]="search" />
   </div>
   <div class="ms-md-2 mt-2 mt-md-0" style="min-width: 220px">
     <select class="form-select" [formControl]="category">
-      <option [ngValue]="null">Todas las categorías</option>
-      <option *ngFor="let c of categories$ | async" [value]="c.id">{{ c.name }}</option>
+      <option [ngValue]="null">All Categories</option>
+      <option *ngFor="let c of categories$ | async" [ngValue]="c.id">{{ c.name }}</option>
     </select>
   </div>
 </div>
@@ -19,7 +16,7 @@
   <ng-container *ngIf="filtered$ | async as products">
     <div *ngIf="products.length === 0" class="text-center text-muted p-4">No products found.</div>
 
-    <div *ngFor="let product of products" class="col-12 col-sm-6 col-lg-3 mb-4">
+    <div *ngFor="let product of products" class="col-12 col-sm-6 col-lg-4 d-flex">
       <app-product-card
         [product]="product"
         [categoryName]="getCategoryName(product.categoryId)"

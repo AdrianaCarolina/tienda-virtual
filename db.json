@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "edwin",
       "password": "123456",
       "name": "Edwin Fidel",
@@ -11,7 +11,7 @@
       "phone": "987654321"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "ana",
       "password": "654321",
       "name": "Ana Torres",
@@ -21,7 +21,7 @@
       "phone": "912345678"
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "admin",
       "password": "admin123",
       "name": "Administrador",
@@ -33,84 +33,152 @@
   ],
   "categories": [
     {
-      "id": 101,
+      "id": "101",
       "name": "Electrónicos",
       "description": "Productos electrónicos como laptops y smartphones."
     },
     {
-      "id": 102,
+      "id": "102",
       "name": "Ropa",
       "description": "Ropa para hombre, mujer y niños."
     },
     {
-      "id": 103,
+      "id": "103",
       "name": "Hogar",
       "description": "Artículos para el hogar y decoración."
+    },
+    {
+      "id": "092a",
+      "name": "Rol",
+      "description": "Rol"
     }
   ],
   "products": [
     {
-      "id": 201,
-      "name": "Laptop Gamer",
+      "id": "201",
+      "name": "Laptop Gamer editado",
       "description": "Laptop con 16GB RAM, 512GB SSD, RTX 3060.",
-      "price": 2500.0,
+      "price": 2500,
       "stock": 10,
       "categoryId": 101,
       "image": "https://ejemplo.com/laptop.jpg"
     },
     {
-      "id": 202,
+      "id": "202",
       "name": "Smartphone X",
       "description": "Smartphone con 128GB de almacenamiento y cámara de 48MP.",
-      "price": 800.0,
+      "price": 800,
       "stock": 20,
       "categoryId": 101,
       "image": "https://ejemplo.com/smartphone.jpg"
     },
     {
-      "id": 203,
+      "id": "203",
       "name": "Camiseta Algodón",
-      "description": "Camiseta 100% algodón, tallas S-M-L.",
-      "price": 25.0,
+      "description": "Camiseta 100% algodón, tallas S-M-L-XL.",
+      "price": 25,
       "stock": 50,
       "categoryId": 102,
       "image": "https://ejemplo.com/camiseta.jpg"
+    },
+    {
+      "id": null,
+      "name": "Nuevo Producto",
+      "description": "Test",
+      "price": 344,
+      "stock": 10,
+      "categoryId": "102",
+      "image": "https://picsum.photos/200/300"
+    },
+    {
+      "id": null,
+      "name": "Nuevo Producto",
+      "description": "Test",
+      "price": 344,
+      "stock": 10,
+      "categoryId": "102",
+      "image": "https://picsum.photos/500/400"
+    },
+    {
+      "id": null,
+      "name": "Nuevo Producto",
+      "description": "Test",
+      "price": 344,
+      "stock": 10,
+      "categoryId": "102",
+      "image": "https://picsum.photos/500/400"
+    },
+    {
+      "id": null,
+      "name": "Test",
+      "description": "test",
+      "price": 566,
+      "stock": 444,
+      "categoryId": "101",
+      "image": "https://picsum.photos/200/300"
+    },
+    {
+      "id": null,
+      "name": "Test",
+      "description": "test",
+      "price": 566,
+      "stock": 444,
+      "categoryId": "101",
+      "image": "https://picsum.photos/200/300"
+    },
+    {
+      "id": 308028,
+      "name": "Dados",
+      "description": "Dados varios",
+      "price": 20,
+      "stock": 3,
+      "categoryId": null,
+      "image": "https://picsum.photos/300/300"
+    },
+    {
+      "id": 924934,
+      "name": "Dados",
+      "description": "Dados varios",
+      "price": 20,
+      "stock": 3,
+      "categoryId": null,
+      "image": "https://picsum.photos/300/300"
     }
   ],
   "orders": [
     {
-      "id": 301,
+      "id": "301",
       "userId": 1,
       "date": "2025-09-01",
       "status": "completed",
-      "total": 800.0,
+      "total": 800,
       "shippingAddress": "Av. Principal 123, Lima",
       "paymentMethod": "Tarjeta de crédito"
     },
     {
-      "id": 302,
+      "id": "302",
       "userId": 2,
       "date": "2025-08-30",
       "status": "pending",
-      "total": 25.0,
+      "total": 25,
       "shippingAddress": "Calle Secundaria 456, Arequipa",
       "paymentMethod": "Transferencia bancaria"
     }
   ],
   "orderDetails": [
     {
-      "id": 401,
+      "id": "401",
       "orderId": 301,
       "productId": 202,
       "quantity": 1,
-      "price": 800.0
+      "price": 800
     },
     {
-      "id": 402,
+      "id": "402",
       "orderId": 302,
       "productId": 203,
       "quantity": 1,
-      "price": 25.0
+      "price": 25
     }
   ]
 }
