@@ -9,16 +9,16 @@
       </a>
 
       <!-- Productos -->
-      <a class="nav-link" routerLink="/productos" routerLinkActive="active"> Productos </a>
+      <a class="nav-link" routerLink="/catalog" routerLinkActive="active"> Productos </a>
 
       <!-- Mis Pedidos -->
-      <a class="nav-link" routerLink="/pedidos" routerLinkActive="active"> Mis Pedidos </a>
+      <a class="nav-link" routerLink="/orders" routerLinkActive="active"> Mis Pedidos </a>
 
       <!-- Admin (solo si es administrador) -->
       @if (isAdmin()) {
       <a class="nav-link" routerLink="/admin" routerLinkActive="active">Administrar Productos</a>
 
-      <a class="nav-link" routerLink="/admin-pedidos" routerLinkActive="active">
+      <a class="nav-link" routerLink="/admin-orders" routerLinkActive="active">
         Administrador de Pedidos</a
       >
 

@@ -1,0 +1,170 @@
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-12">
+      <!-- Header simple -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">
+          <i class="fas fa-cogs me-2 text-primary"></i>
+          Administración de Pedidos
+        </h1>
+        <button class="btn btn-outline-secondary" (click)="refreshOrders()">
+          <i class="fas fa-sync-alt me-1"></i>
+          Actualizar
+        </button>
+      </div>
+
+      <!-- Tabla de pedidos -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">Lista de Pedidos ({{ orders.length }})</h5>
+        </div>
+        <div class="card-body p-0">
+          @if (loading) {
+          <div class="text-center py-4">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 text-muted">Cargando pedidos...</p>
+          </div>
+          } @else if (orders.length === 0) {
+          <div class="text-center py-4">
+            <p class="mt-2 text-muted">No se encontraron pedidos</p>
+          </div>
+          } @else {
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>ID</th>
+                  <th>Usuario</th>
+                  <th>Fecha</th>
+                  <th>Estado</th>
+                  <th>Total</th>
+                  <th>Dirección</th>
+                  <th>Pago</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (order of orders; track order.id) {
+                <tr>
+                  <td>
+                    <span class="badge bg-secondary">#{{ order.id }}</span>
+                  </td>
+                  <td>
+                    {{ getUserName(order.userId) }}
+                  </td>
+                  <td>
+                    {{ order.date }}
+                  </td>
+                  <td>
+                    <span class="badge" [class]="getStatusClass(order.status)">
+                      {{ getStatusText(order.status) }}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="fw-bold text-success">S/ {{ order.total }}</span>
+                  </td>
+                  <td>
+                    <span
+                      class="text-truncate d-inline-block"
+                      style="max-width: 150px"
+                      [title]="order.shippingAddress"
+                    >
+                      {{ order.shippingAddress }}
+                    </span>
+                  </td>
+                  <td>
+                    {{ order.paymentMethod }}
+                  </td>
+                  <td class="text-center">
+                    <div class="btn-group btn-group-sm">
+                      <button
+                        class="btn btn-outline-primary"
+                        (click)="viewOrderDetails(order)"
+                        title="Ver detalles"
+                      >
+                        <i class="bi bi-eye-fill"></i>
+                      </button>
+
+                      @if (order.status === 'pending') {
+                      <button
+                        class="btn btn-outline-success"
+                        (click)="toggleOrderStatus(order)"
+                        title="Marcar como completado"
+                      >
+                        <i class="bi bi-check2"></i>
+                      </button>
+                      }
+                    </div>
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para detalles del pedido -->
+<div class="modal fade" id="orderDetailsModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="fas fa-receipt me-2"></i>
+          Detalles del Pedido #{{ selectedOrder?.id }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        @if (selectedOrder) {
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Información del Cliente</h6>
+            <p><strong>Usuario ID:</strong> {{ selectedOrder.userId }}</p>
+            <p><strong>Dirección:</strong> {{ selectedOrder.shippingAddress }}</p>
+            <p><strong>Método de pago:</strong> {{ selectedOrder.paymentMethod }}</p>
+          </div>
+          <div class="col-md-6">
+            <h6>Información del Pedido</h6>
+            <p><strong>Fecha:</strong> {{ selectedOrder.date }}</p>
+            <p><strong>Estado:</strong> {{ getStatusText(selectedOrder.status) }}</p>
+            <p><strong>Total:</strong> S/ {{ selectedOrder.total }}</p>
+          </div>
+        </div>
+
+        @if (selectedOrderDetails.length > 0) {
+        <h6 class="mt-4">Productos</h6>
+        <div class="table-responsive">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unit.</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (detail of selectedOrderDetails; track detail.id) {
+              <tr>
+                <td>{{ detail.product?.name }}</td>
+                <td>{{ detail.quantity }}</td>
+                <td>S/ {{ detail.price }}</td>
+                <td>S/ {{ detail.price * detail.quantity }}</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        } }
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
