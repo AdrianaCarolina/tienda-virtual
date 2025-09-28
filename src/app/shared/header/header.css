@@ -45,9 +45,6 @@
 }
 
 /* Botón logout */
-.logout-btn {
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-weight: 500;
+.nav-link {
+  cursor: pointer;
 }

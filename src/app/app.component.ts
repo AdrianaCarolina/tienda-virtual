@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Modal } from './shared/modal/modal';
 import { Header } from './shared/header/header';
@@ -15,12 +15,13 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private authService: AuthService) {
-    //Todo: esto es de prueba hasta que este el login
-    setTimeout(() => {
-      if (!this.authService.currentUser()) {
-        this.authService.login('admin', 'admin123');
-      }
-    }, 100);
+  constructor(private authService: AuthService, private router: Router) {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  showHeader(): boolean {
+    return this.authService.isLoggedIn();
   }
 }

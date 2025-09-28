@@ -43,12 +43,19 @@
       >
         <span>{{ getUserInitials() }}</span>
       </a>
-
       <!-- Logout -->
-      <button class="btn btn-outline-light logout-btn" (click)="logout()">
-        <i class="bi bi-box-arrow-right me-2"></i>
-        Salir
-      </button>
+      <a
+        class="nav-link me-3 d-flex align-items-center"
+        *ngIf="!auth.isLoggedIn()"
+        routerLink="/login"
+        >Login</a
+      >
+      <a
+        class="nav-link me-3 d-flex align-items-center"
+        *ngIf="auth.isLoggedIn()"
+        (click)="logout()"
+        >Salir</a
+      >
     </div>
   </div>
 </nav>

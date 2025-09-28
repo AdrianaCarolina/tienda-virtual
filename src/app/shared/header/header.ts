@@ -1,12 +1,13 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../pages/cart/services/cart.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
@@ -15,17 +16,20 @@ export class Header {
   private cartService = inject(CartService);
   private router = inject(Router);
 
-  readonly currentUser = this.authService.currentUser;
+  readonly currentUser = this.authService.getCurrentUser();
   readonly cartItemCount = this.cartService.itemCount;
 
   isAdmin = computed(() => this.authService.isAdmin());
 
+  constructor(public auth: AuthService) {}
+
   logout(): void {
-    this.authService.logout();
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
 
   getUserInitials(): string {
-    const user = this.currentUser();
+    const user = this.currentUser;
     if (!user) return 'User';
 
     const names = user.name.split(' ');

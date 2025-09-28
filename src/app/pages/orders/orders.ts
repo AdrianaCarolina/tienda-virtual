@@ -23,9 +23,9 @@ export class Orders {
 
   // 🔥 LÓGICA MEJORADA: Carga todo de una vez
   loadOrdersWithDetails() {
-    const orders$ = this.http.get<Order[]>(`http://localhost:3001/orders?userId=${this.userId}`);
-    const orderDetails$ = this.http.get<OrderDetail[]>('http://localhost:3001/orderDetails');
-    const products$ = this.http.get<any[]>('http://localhost:3001/products');
+    const orders$ = this.http.get<Order[]>(`http://localhost:3000/orders?userId=${this.userId}`);
+    const orderDetails$ = this.http.get<OrderDetail[]>('http://localhost:3000/orderDetails');
+    const products$ = this.http.get<any[]>('http://localhost:3000/products');
 
     // Carga paralela de todos los datos
     forkJoin({

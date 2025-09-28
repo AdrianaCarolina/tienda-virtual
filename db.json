@@ -143,6 +143,51 @@
       "stock": 3,
       "categoryId": null,
       "image": "https://picsum.photos/300/300"
+    },
+    {
+      "id": 216463,
+      "name": "Laptop Gamer editado",
+      "description": "Laptop con 16GB RAM, 512GB SSD, RTX 3060.",
+      "price": 2500,
+      "stock": 10,
+      "categoryId": 101,
+      "image": "https://picsum.photos/300/300"
+    },
+    {
+      "id": 303383,
+      "name": "Laptop Gamer editado",
+      "description": "Laptop con 16GB RAM, 512GB SSD, RTX 3060.",
+      "price": 2500,
+      "stock": 10,
+      "categoryId": 101,
+      "image": "https://picsum.photos/300/300"
+    },
+    {
+      "id": 787060,
+      "name": "Laptop Gamer editado",
+      "description": "Laptop con 16GB RAM, 512GB SSD, RTX 3060.",
+      "price": 2500,
+      "stock": 10,
+      "categoryId": 101,
+      "image": "https://picsum.photos/300/300"
+    },
+    {
+      "id": 955468,
+      "name": "Dados 2",
+      "description": "Dados varios",
+      "price": 20,
+      "stock": 3,
+      "categoryId": 0,
+      "image": "https://picsum.photos/300/300"
+    },
+    {
+      "id": 643880,
+      "name": "Dados 2",
+      "description": "Dados varios",
+      "price": 20,
+      "stock": 3,
+      "categoryId": 0,
+      "image": "https://picsum.photos/300/300"
     }
   ],
   "orders": [

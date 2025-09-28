@@ -80,7 +80,6 @@ export class AdminComponent {
   }
 
   onSave(product: Product) {
-    // ensure categoryId is a number
     product.categoryId = Number(product.categoryId);
     if (product.id) {
       this.productsService.update(product).subscribe({
