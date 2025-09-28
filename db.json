@@ -127,7 +127,7 @@
       "image": "https://picsum.photos/200/300"
     },
     {
-      "id": 308028,
+      "id": "308028",
       "name": "Dados",
       "description": "Dados varios",
       "price": 20,
@@ -136,7 +136,7 @@
       "image": "https://picsum.photos/300/300"
     },
     {
-      "id": 924934,
+      "id": "924934",
       "name": "Dados",
       "description": "Dados varios",
       "price": 20,
@@ -159,10 +159,19 @@
       "id": "302",
       "userId": 2,
       "date": "2025-08-30",
-      "status": "pending",
+      "status": "completed",
       "total": 25,
       "shippingAddress": "Calle Secundaria 456, Arequipa",
       "paymentMethod": "Transferencia bancaria"
+    },
+    {
+      "id": "abef",
+      "userId": 1,
+      "date": "2025-09-28",
+      "status": "completed",
+      "total": 3320,
+      "shippingAddress": "wedwdw",
+      "paymentMethod": "Yape/Plin"
     }
   ],
   "orderDetails": [
