@@ -25,6 +25,7 @@ Aplicación de tienda en línea desarrollada con Angular que permite la gestión
 Antes de ejecutar el proyecto, asegúrate de tener instalado:
 - Node.js
 - Angular 20.x
+- json-server
 
 ## Instalacion y Configuracion
 
@@ -36,6 +37,15 @@ cd tienda-virtual
 2. Instalar dependencias
 ```bash
 npm install
+```
+3. Editar el archivo src/app/app.component.ts en la linea del metodo login(),
+```bash
+setTimeout(() => {
+  if (!this.authService.currentUser()) {
+    // MODIFICAR AQUÍ: Agregar usuario y contraseña registrados en la db.json del proyecto
+    this.authService.login('USUARIO', 'CONTRASEÑA');
+  }
+}, 100);
 ```
 3. Ejecutar el proyecto
 ```bash
