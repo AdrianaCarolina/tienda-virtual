@@ -1,0 +1,91 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h4>Admin - Products</h4>
+  <div>
+    <button class="btn btn-success me-2" (click)="openCreate()">Create Product</button>
+    <button class="btn btn-outline-primary" (click)="toggleCategoryForm()">
+      {{ showCategoryForm ? 'Close Categories' : 'Manage Categories' }}
+    </button>
+  </div>
+</div>
+
+<!-- Categories management -->
+<div *ngIf="showCategoryForm" class="mb-3">
+  <div class="card p-3 mb-3">
+    <h5>Create Category</h5>
+    <app-category-form
+      (save)="createCategory($event)"
+      (cancel)="toggleCategoryForm()"
+    ></app-category-form>
+  </div>
+
+  <div class="card p-3">
+    <h5>Existing Categories</h5>
+    <div *ngIf="categories$ | async as cats">
+      <div *ngIf="cats.length === 0" class="text-muted">No categories found.</div>
+      <div class="list-group">
+        <div
+          class="list-group-item d-flex justify-content-between align-items-center"
+          *ngFor="let c of cats"
+        >
+          <div>
+            <strong>{{ c.name }}</strong>
+            <div class="small text-muted">{{ c.description }}</div>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-outline-danger" (click)="deleteCategory(c.id)">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product search and filter -->
+<div class="mb-3 d-flex gap-2 flex-column flex-md-row">
+  <input class="form-control" placeholder="Search products by name..." [formControl]="search" />
+  <select class="form-select" [formControl]="category" style="max-width: 260px">
+    <option [ngValue]="null">All Categories</option>
+    <option *ngFor="let c of categories$ | async" [ngValue]="c.id">{{ c.name }}</option>
+  </select>
+</div>
+
+<!-- Product form if editing/creating -->
+<div *ngIf="showForm" class="mb-3">
+  <div class="card p-3">
+    <h5>{{ editing ? 'Edit Product' : 'Create Product' }}</h5>
+    <app-product-form
+      [product]="editing"
+      [categories]="(categories$ | async) || []"
+      (save)="onSave($event)"
+      (cancel)="onCancel()"
+    ></app-product-form>
+  </div>
+</div>
+
+<!-- Product cards -->
+<div class="row g-3">
+  <ng-container *ngIf="filtered$ | async as products">
+    <div *ngIf="products.length === 0" class="text-muted">No products found.</div>
+    <div *ngFor="let product of products" class="col-12 col-md-6 col-lg-4 d-flex">
+      <div class="w-100">
+        <app-product-card
+          [product]="product"
+          [categoryName]="'ID: ' + product.categoryId"
+        ></app-product-card>
+        <div class="mt-2 d-flex justify-content-between">
+          <div>
+            <button class="btn btn-outline-primary btn-sm me-2" (click)="openEdit(product)">
+              Edit
+            </button>
+            <button class="btn btn-outline-danger btn-sm" (click)="onDelete(product.id)">
+              Delete
+            </button>
+          </div>
+          <div class="text-muted small align-self-center">ID: {{ product.id }}</div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
