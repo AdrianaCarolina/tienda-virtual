@@ -19,7 +19,7 @@ export class AppComponent {
     //Todo: esto es de prueba hasta que este el login
     setTimeout(() => {
       if (!this.authService.currentUser()) {
-        this.authService.login();
+        this.authService.login('admin', 'admin123');
       }
     }, 100);
   }
