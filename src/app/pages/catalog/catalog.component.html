@@ -16,7 +16,7 @@
   <ng-container *ngIf="filtered$ | async as products">
     <div *ngIf="products.length === 0" class="text-center text-muted p-4">No products found.</div>
 
-    <div *ngFor="let product of products" class="col-12 col-sm-6 col-lg-4 d-flex">
+    <div *ngFor="let product of products" class="col-12 col-sm-6 col-lg-3 mb-4">
       <app-product-card
         [product]="product"
         [categoryName]="getCategoryName(product.categoryId)"

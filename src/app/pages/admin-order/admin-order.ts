@@ -31,10 +31,10 @@ export class AdminOrder {
   loadAllData() {
     this.loading = true;
 
-    const orders$ = this.http.get<Order[]>('http://localhost:3001/orders');
-    const users$ = this.http.get<User[]>('http://localhost:3001/users');
-    const orderDetails$ = this.http.get<OrderDetail[]>('http://localhost:3001/orderDetails');
-    const products$ = this.http.get<any[]>('http://localhost:3001/products');
+    const orders$ = this.http.get<Order[]>('http://localhost:3000/orders');
+    const users$ = this.http.get<User[]>('http://localhost:3000/users');
+    const orderDetails$ = this.http.get<OrderDetail[]>('http://localhost:3000/orderDetails');
+    const products$ = this.http.get<any[]>('http://localhost:3000/products');
 
     forkJoin({
       orders: orders$,
@@ -111,7 +111,7 @@ export class AdminOrder {
   updateOrderStatus(order: Order, newStatus: string) {
     const updatedOrder = { ...order, status: newStatus };
 
-    this.http.put(`http://localhost:3001/orders/${order.id}`, updatedOrder).subscribe({
+    this.http.put(`http://localhost:3000/orders/${order.id}`, updatedOrder).subscribe({
       next: () => {
         // Actualizar en la lista local
         const index = this.orders.findIndex((o) => o.id === order.id);

@@ -51,7 +51,7 @@ export class Checkout {
     };
 
     // 1. Crear el pedido
-    this.http.post<any>('http://localhost:3001/orders', order).subscribe({
+    this.http.post<any>('http://localhost:3000/orders', order).subscribe({
       next: (newOrder) => {
         // 2. Crear los detalles del pedido (como Katerine)
         this.createOrderDetails(newOrder.id);
@@ -74,7 +74,7 @@ export class Checkout {
 
     let created = 0;
     details.forEach((detail) => {
-      this.http.post('http://localhost:3001/orderDetails', detail).subscribe({
+      this.http.post('http://localhost:3000/orderDetails', detail).subscribe({
         next: () => {
           created++;
           if (created === details.length) {

@@ -1,96 +1,66 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { User, DBUser } from '../models/user.interface';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-  private router = inject(Router);
-  private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3001/users';
+  private apiUrl = 'http://localhost:3000/users';
+  private currentUser: any = null;
 
-  private _currentUser = signal<User | null>(null);
-  readonly currentUser = this._currentUser.asReadonly();
+  constructor(private http: HttpClient) {
+    this.loadUserFromStorage();
+  }
 
-  login(username?: string, password?: string): void {
-    // Si ya hay usuario guardado y no se pasan credenciales, no hacer nada
-    if (this._currentUser() && !username && !password) return;
-
-    this.http.get<DBUser[]>(this.apiUrl).subscribe({
-      next: (users) => {
-        let dbUser: DBUser | undefined;
-
-        if (username && password) {
-          // Buscar usuario específico
-          dbUser = users.find((u) => u.username === username && u.password === password);
-        } else {
-          // Auto-login con primer usuario si no se pasan credenciales
-          dbUser = users[0];
+  login(username: string, password: string): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}?username=${username}&password=${password}`).pipe(
+      map((users) => {
+        console.log('Login response:', users); // Add this line
+        if (users.length) {
+          this.currentUser = users[0];
+          localStorage.setItem('user', JSON.stringify(this.currentUser));
+          return this.currentUser;
         }
-
-        if (dbUser) {
-          const user: User = {
-            id: dbUser.id.toString(),
-            name: dbUser.name,
-            email: dbUser.email,
-            role: dbUser.role as 'client' | 'admin',
-          };
-
-          this._currentUser.set(user);
-          localStorage.setItem('UserLogged', JSON.stringify(user));
-          console.log(`Login exitoso: ${user.name} (${user.role})`);
-        } else {
-          console.error('Usuario o contraseña incorrectos');
-        }
-      },
-      error: (error) => {
-        console.error('Error en login:', error);
-      },
-    });
+        return null;
+      })
+    );
   }
 
-  getLoggedInUser(): User | null {
-    return this._currentUser();
+  logout() {
+    this.currentUser = null;
+    localStorage.removeItem('user');
   }
 
-  logout(): void {
-    this._currentUser.set(null);
-    localStorage.removeItem('UserLogged');
-  }
-
-  canActivate(): boolean {
-    const user = this._currentUser();
-    if (!user) {
-      this.router.navigate(['/']);
-      return false;
+  getUser() {
+    if (!this.currentUser) {
+      const user = localStorage.getItem('user');
+      if (user) this.currentUser = JSON.parse(user);
     }
-    return true;
+    return this.currentUser;
   }
 
   isAdmin(): boolean {
-    return this._currentUser()?.role === 'admin';
+    const user = this.getUser();
+    return user && user.role === 'admin';
   }
 
-  isClient(): boolean {
-    return this._currentUser()?.role === 'client';
+  isLoggedIn(): boolean {
+    return !!this.getUser();
   }
 
-  //para persistencia que no se pierda el usuario logeado
   private loadUserFromStorage(): void {
-    const storedUser = localStorage.getItem('UserLogged');
+    const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {
-        const user: User = JSON.parse(storedUser);
-        this._currentUser.set(user);
+        const user = JSON.parse(storedUser);
+        this.currentUser = user;
       } catch (error) {
-        localStorage.removeItem('UserLogged');
+        localStorage.removeItem('user');
       }
     }
   }
 
-  constructor() {
-    this.loadUserFromStorage();
+  public getCurrentUser() {
+    return this.currentUser;
   }
 }

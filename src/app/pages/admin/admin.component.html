@@ -1,17 +1,16 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
-  <h4>Admin - Products</h4>
+  <h4>Administrar Productos</h4>
   <div>
-    <button class="btn btn-success me-2" (click)="openCreate()">Create Product</button>
+    <button class="btn btn-success me-2" (click)="openCreate()">Nuevo Producto</button>
     <button class="btn btn-outline-primary" (click)="toggleCategoryForm()">
-      {{ showCategoryForm ? 'Close Categories' : 'Manage Categories' }}
+      {{ showCategoryForm ? 'Cerrar' : 'Editar Categorías' }}
     </button>
   </div>
 </div>
 
-<!-- Categories management -->
 <div *ngIf="showCategoryForm" class="mb-3">
   <div class="card p-3 mb-3">
-    <h5>Create Category</h5>
+    <h5>Nueva Categoría</h5>
     <app-category-form
       (save)="createCategory($event)"
       (cancel)="toggleCategoryForm()"
@@ -19,9 +18,9 @@
   </div>
 
   <div class="card p-3">
-    <h5>Existing Categories</h5>
+    <h5>Categorías Existentes</h5>
     <div *ngIf="categories$ | async as cats">
-      <div *ngIf="cats.length === 0" class="text-muted">No categories found.</div>
+      <div *ngIf="cats.length === 0" class="text-muted">No hay categorías</div>
       <div class="list-group">
         <div
           class="list-group-item d-flex justify-content-between align-items-center"
@@ -33,7 +32,7 @@
           </div>
           <div>
             <button class="btn btn-sm btn-outline-danger" (click)="deleteCategory(c.id)">
-              Delete
+              Eliminar
             </button>
           </div>
         </div>
@@ -42,16 +41,14 @@
   </div>
 </div>
 
-<!-- Product search and filter -->
 <div class="mb-3 d-flex gap-2 flex-column flex-md-row">
   <input class="form-control" placeholder="Search products by name..." [formControl]="search" />
   <select class="form-select" [formControl]="category" style="max-width: 260px">
-    <option [ngValue]="null">All Categories</option>
+    <option [ngValue]="null">Todas las categorías</option>
     <option *ngFor="let c of categories$ | async" [ngValue]="c.id">{{ c.name }}</option>
   </select>
 </div>
 
-<!-- Product form if editing/creating -->
 <div *ngIf="showForm" class="mb-3">
   <div class="card p-3">
     <h5>{{ editing ? 'Edit Product' : 'Create Product' }}</h5>
@@ -64,7 +61,6 @@
   </div>
 </div>
 
-<!-- Product cards -->
 <div class="row g-3">
   <ng-container *ngIf="filtered$ | async as products">
     <div *ngIf="products.length === 0" class="text-muted">No products found.</div>
@@ -77,10 +73,10 @@
         <div class="mt-2 d-flex justify-content-between">
           <div>
             <button class="btn btn-outline-primary btn-sm me-2" (click)="openEdit(product)">
-              Edit
+              Editar
             </button>
-            <button class="btn btn-outline-danger btn-sm" (click)="onDelete(product.id)">
-              Delete
+            <button class="btn btn-outline-danger btn-sm" (click)="onDelete(product.id!)">
+              Eliminar
             </button>
           </div>
           <div class="text-muted small align-self-center">ID: {{ product.id }}</div>

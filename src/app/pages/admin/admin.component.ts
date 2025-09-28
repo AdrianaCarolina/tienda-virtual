@@ -33,7 +33,6 @@ export class AdminComponent {
 
   filtered$!: Observable<Product[]>;
 
-  // UI state
   showForm = false;
   editing?: Product | null;
 
@@ -80,8 +79,8 @@ export class AdminComponent {
   }
 
   onSave(product: Product) {
-    // ensure categoryId is a number
     product.categoryId = Number(product.categoryId);
+
     if (product.id) {
       this.productsService.update(product).subscribe({
         next: () => this.afterProductChange(),
@@ -95,22 +94,12 @@ export class AdminComponent {
     }
   }
 
-  onDelete(id?: number) {
-    if (!id) return;
-    if (!confirm('Are you sure you want to delete this product?')) return;
-    this.productsService.delete(id).subscribe({
-      next: () => this.afterProductChange(),
-      error: () => alert('Failed to delete product'),
-    });
-  }
-
   private afterProductChange() {
     this.showForm = false;
     this.editing = undefined;
     this.loadData();
   }
 
-  // Categories management
   toggleCategoryForm() {
     this.showCategoryForm = !this.showCategoryForm;
   }
@@ -130,6 +119,14 @@ export class AdminComponent {
     this.categoriesService.delete(id).subscribe({
       next: () => this.loadData(),
       error: () => alert('Failed to delete category'),
+    });
+  }
+
+  onDelete(productId: number) {
+    if (!confirm('Are you sure you want to delete this product?')) return;
+    this.productsService.delete(productId).subscribe({
+      next: () => this.loadData(),
+      error: () => alert('Failed to delete product'),
     });
   }
 }

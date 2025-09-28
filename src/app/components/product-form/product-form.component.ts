@@ -33,10 +33,9 @@ export class ProductFormComponent {
   ngOnChanges(changes: SimpleChanges) {
     if ('product' in changes) {
       if (this.product) {
-        // patch with numeric cast to ensure number type
         this.form.patchValue({
           ...this.product,
-          id: this.product.id !== undefined && this.product.id !== null ? undefined : null,
+          id: this.product.id !== undefined && this.product.id !== null ? this.product.id : null,
           categoryId: Number(this.product.categoryId),
         });
       } else {
@@ -53,10 +52,10 @@ export class ProductFormComponent {
     const payload: Product = {
       ...raw,
       categoryId: Number(raw.categoryId),
-      // If id exists, ensure it's a number too (it could be a string from UI)
       id: raw.id ? Number(raw.id) : undefined,
     };
 
     this.save.emit(payload);
+    this.form.reset({ price: 0, stock: 0, categoryId: null });
   }
 }
