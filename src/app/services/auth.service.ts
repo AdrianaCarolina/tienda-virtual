@@ -39,7 +39,6 @@ export class AuthService {
           };
 
           this._currentUser.set(user);
-          debugger;
           localStorage.setItem('UserLogged', JSON.stringify(user));
           console.log(`Login exitoso: ${user.name} (${user.role})`);
         } else {
